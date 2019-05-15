@@ -1,0 +1,12 @@
+<div class="container">
+    <h1>Könyv szerkesztése</h1>
+
+    <%= simple_form_for @book do |f| %>
+        <%= f.input :title, label: "Könyv címe" %>
+        <label>Válassz kategóriát</label><br>
+        <%= f.select(:category_id, @categories, {}, { :class => 'form-control' }) %>
+        <%= f.input :description, label: 'Leírás' %>
+        <%= f.input :author, label: 'Szerző' %>
+        <%= f.submit 'Módosít', class: 'btn btn-primary' %>
+    <% end %>
+</div>

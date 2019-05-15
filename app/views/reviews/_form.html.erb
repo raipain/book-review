@@ -1,0 +1,4 @@
+<%= simple_form_for([@book, @book.reviews.build]) do |f| %>
+    <%= f.input :comment, label: 'Komment' %>
+    <%= f.submit 'Kommentelj', class: "btn btn-primary" %>
+<% end %>
