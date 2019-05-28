@@ -4,8 +4,10 @@
       <%= review.comment %>
       <div class="float-right"><strong>Időpont: </strong><%= review.created_at %></div>
       <div class="float-right"><strong>Szerző e-mail: </strong><%= review.user.email %></div>
-      <% if review.user_id == current_user.id %>
-        <%= link_to "Törlés", book_review_path(review.book, review), method: :delete, data: {confirm: "Biztos vagy benne?"}, class: "btn btn-danger btn-sm" %>
+      <% if user_signed_in? %>
+        <% if review.user_id == current_user.id %>
+          <%= link_to "Törlés", book_review_path(review.book, review), method: :delete, data: {confirm: "Biztos vagy benne?"}, class: "btn btn-danger btn-sm" %>
+        <% end %>
       <% end %>
     </li>
   </ol>
