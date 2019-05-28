@@ -16,7 +16,6 @@ namespace :db do
             category.name = Populator.words(1..5).titleize
             category.created_at = 2.years.ago..Time.now
             Book.populate 5 do |book|
-                book.category_id = category.id
                 book.title = Populator.words(1..10).titleize
                 book.description = Populator.sentences(100..150)
                 book.author = Faker::Name.name
