@@ -1,7 +1,6 @@
 <%= simple_form_for @book do |f| %>
     <%= f.input :title, label: "Könyv címe" %>
-    <label>Válassz kategóriát</label>
-    <%= select_tag(:category_id, options_for_select(@categories), :prompt => "Nyisd ki", class: "form-control") %>
+    <%= f.association :categories, label: "Válassz kategóriát", as: :check_boxes %>
     <%= f.input :description, label: "Leírás" %>
     <%= f.input :author, label: "Szerző" %>
     <%= f.submit 'Létrehoz', class: "btn btn-primary" %>

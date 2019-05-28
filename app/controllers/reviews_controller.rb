@@ -1,5 +1,8 @@
 class ReviewsController < ApplicationController
+    before_action :authenticate_user!
     before_action :find_book
+    before_action :find_user, only: [:show]
+    before_action :find_review, only: [:destroy]
 
     def new
         @reviews = Review.new
@@ -17,6 +20,18 @@ class ReviewsController < ApplicationController
         end
     end
 
+    def show
+        render 'new'
+    end
+
+    def destroy
+        if current_user.id == @review.user_id
+            @review.destroy
+            redirect_to book_path(@book)
+        end
+    end
+
+
     private
         def review_params
             params.require(:review).permit(:comment)
@@ -24,6 +39,14 @@ class ReviewsController < ApplicationController
 
         def find_book
             @book = Book.find(params[:book_id])
+        end
+
+        def find_user
+            @user = User.find(params[:user_id])
+        end
+
+        def find_review
+            @review = Review.find(params[:id])
         end
 
 end
